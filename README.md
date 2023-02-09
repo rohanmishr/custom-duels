@@ -1,2 +1,3 @@
-# custom-duels
-Fully customizable chess duels.
+# Custom Duels
+## A fully customizable online chess platform.
+
