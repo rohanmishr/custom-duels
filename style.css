@@ -1,0 +1,12 @@
+#side{
+    float: right;
+}
+
+#canvas{
+    float: left;
+    border: 1px solid #000;
+}
+
+#resources{
+    display: none;
+}
