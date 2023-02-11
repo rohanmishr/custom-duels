@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Custom Duels</title>
+        <meta type="description" content="Fully customizable chess games.">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="resources">
+            <img id="pawnwhite" src="assets/white/pawn-white.png">
+            <img id="rookwhite" src="assets/white/rook-white.png">
+            <img id="knightwhite" src="assets/white/knight-white.png">
+            <img id="bishopwhite" src="assets/white/bishop-white.png">
+            <img id="queenwhite" src="assets/white/queen-white.png">
+            <img id="kingwhite" src="assets/white/king-white.png">
+
+            <img id="pawnblack" src="assets/black/pawn-black.png">
+            <img id="rookblack" src="assets/black/rook-black.png">
+            <img id="knightblack" src="assets/black/knight-black.png">
+            <img id="bishopblack" src="assets/black/bishop-black.png">
+            <img id="queenblack" src="assets/black/queen-black.png">
+            <img id="kingblack" src="assets/black/king-black.png">
+        </div>
+        <a href="main.html">Back</a>
+        <div id="board">
+            <canvas id="canvas" width="600" height="600"></canvas>
+        </div>
+
+        <div id="side">
+            <div id="side-top">
+                <h1>Chess Game</h1>
+            </div>
+
+            <div id="side-moves">
+
+            </div>
+        </div>
+    </body>
+    <script src="scripts/constructors.js"></script>
+    <script src="scripts/board.js"></script>
+    <script src="scripts/behavior.js"></script>
+    <script src="scripts/main.js"></script>
+</html>

@@ -5,6 +5,7 @@
 #canvas{
     float: left;
     border: 1px solid #000;
+    margin-left: 35vw;
 }
 
 #resources{

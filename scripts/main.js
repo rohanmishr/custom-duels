@@ -1,3 +1,5 @@
 function newGame(){
-    pieces.reset();
+    reset();
 }
+
+newGame();
