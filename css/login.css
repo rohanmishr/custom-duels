@@ -1,0 +1,38 @@
+body{
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+input{
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 25%;
+    font-size: 1.5em;
+}
+
+#login{
+    transition: 0.5s;
+    margin-top: 1%;
+    width: 25%;
+    height: 10%;
+    border-radius: 10px;
+}
+
+#login:hover{
+    background-color: rgb(113, 7, 130);
+    color: white;
+}
+
+.validate-neutral{
+    border: 3px gray solid;
+}
+
+.validate-valid{
+    border: 3px rgb(30, 193, 30) solid;
+}
+
+.validate-invalid{
+    border: 3px rgb(193, 30, 30) solid;
+}

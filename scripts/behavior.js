@@ -6,7 +6,7 @@ function movePiece(piece, location){
             piece.r = location.r;
         }
     }
-
+    
     for(var i = 0; i<32; i++){
         locations.push(new Location(gamepieces[i].f, gamepieces[i].r));
     }
@@ -14,6 +14,7 @@ function movePiece(piece, location){
     drawBoard();
     drawPieces();
 
+    console.log("success");
 }
 
 function checkLegalMoves(piece){

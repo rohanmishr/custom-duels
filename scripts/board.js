@@ -45,6 +45,7 @@ function showLegalMoves(piece){
 
 var showingMoves = false;
 var shownPiece = null;
+
 document.getElementById("canvas").addEventListener("click", function(event) {
     drawBoard();
     drawPieces();
@@ -53,19 +54,20 @@ document.getElementById("canvas").addEventListener("click", function(event) {
     var f = Math.floor(x / 75) + 1;
     var r = 8 - Math.floor(y / 75);
     var location = new Location(f, r);
+
+    if(showingMoves === true){
+        movePiece(shownPiece, location);
+        showingMoves = false;
+        shownPiece = null;
+    }
+
     for(var i = 0; i<gamepieces.length; i++){
+        showingMoves = true;
         if(gamepieces[i].f == f && gamepieces[i].r == r){
             showLegalMoves(gamepieces[i]);
             shownPiece = gamepieces[i];
-            showingMoves = true;
         }
     }
-    if(showingMoves){
-        showingMoves = false;
-        shownPiece = null;
-        movePiece(shownPiece, location);
-    }
-    
     console.log(location);
 });
 
