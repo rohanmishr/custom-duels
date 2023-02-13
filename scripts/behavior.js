@@ -42,7 +42,17 @@ function checkLegalMoves(piece){
     if(piece.type == "rook"){
         var moves = [];
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f, i));
+            l = new Location(piece.f, i);
+            if (checkIfTakenSpace(l)) {
+                if (getPieceAtSpace(l).color != piece.color) {
+                    moves.push(l);
+                    break;
+                }
+                else {
+                    break;
+                }
+            }
+            moves.push(l);
         }
         for(var i = 1; i<9; i++){
             moves.push(new Location(i, piece.r));

@@ -49,6 +49,24 @@ function reset(){
     gamepieces.push(new Piece("king", 4, 8,"black"));
 }
 
-for(var i = 0; i<32; i++){
+for(var i = 0; i<gamepieces.length; i++){
     locations.push(new Location(gamepieces[i].f, gamepieces[i].r));
+}
+
+function checkIfTakenSpace(location) {
+    for (var i = 0; i<gamepieces.length; i++) {
+        if (new Location(gamepieces[i].f, gamepieces[i].r) == location) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getPieceAtSpace(location) {
+    for (var i = 0; i<gamepieces.length; i++) {
+        if (i.r== location.r && i.f == location.f) {
+            return gamepieces[i];
+        }
+    }
+    return null;
 }
