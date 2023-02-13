@@ -35,6 +35,40 @@ function drawPieces(){
     }
 }
 
+function showLegalMoves(piece){
+    var moves = checkLegalMoves(piece);
+    for(var i = 0; i < moves.length; i++){
+        ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
+        ctx.fillRect((moves[i].f - 1) * 75, 525 - ((moves[i].r - 1) * 75), 75, 75);
+    }
+}
+
+var showingMoves = false;
+var shownPiece = null;
+document.getElementById("canvas").addEventListener("click", function(event) {
+    drawBoard();
+    drawPieces();
+    var x = event.pageX - canvas.offsetLeft;
+    var y = event.pageY - canvas.offsetTop;
+    var f = Math.floor(x / 75) + 1;
+    var r = 8 - Math.floor(y / 75);
+    var location = new Location(f, r);
+    for(var i = 0; i<gamepieces.length; i++){
+        if(gamepieces[i].f == f && gamepieces[i].r == r){
+            showLegalMoves(gamepieces[i]);
+            shownPiece = gamepieces[i];
+            showingMoves = true;
+        }
+    }
+    if(showingMoves){
+        showingMoves = false;
+        shownPiece = null;
+        movePiece(shownPiece, location);
+    }
+    
+    console.log(location);
+});
+
 window.onload = function() {
     reset();
     drawBoard();
