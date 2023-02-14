@@ -1,0 +1,31 @@
+body {
+    background: #f1f1f1;
+}
+.selectBar {
+    background: #f1f1f1;
+    float: left;
+}
+.adminMenuButton {
+    color: black;
+    background: #f1f1f1;
+    border: none;
+    border-radius: 25px;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+
+    
+}
+    .selectButtons:hover {
+        color: blue;
+        background: #f1f1f1;
+        border: none;
+        border-radius: 25px;
+        text-align: center;
+        width: 100px;
+        height: 75px;
+        margin: 10px;
+        cursor: pointer;
+    }
