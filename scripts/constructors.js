@@ -1,61 +1,95 @@
 var gamepieces = [];
 var locations = [];
-function Piece(type, f, r, color){
-    this.type = type;
-    this.f = f;
-    this.r = r;
-    this.color = color;
+
+const TYPE_PAWN = 0;
+const TYPE_ROOK = 1;
+const TYPE_BISHOP = 2;
+const TYPE_KNIGHT = 3;
+const TYPE_KING = 4;
+const TYPE_QUEEN = 5;
+
+const COLOR_BLACK = 0;
+const COLOR_WHITE = 1;
+
+class Piece {
+    constructor(type, x, y, color) {
+        this.type = type;
+        this.x = x;
+        this.y = y;
+        this.location = new Location(x,y);
+        this.color = color;
+    }
+    constructor(type, location, color) {
+        this(type,location.x,location.y, color);
+    }
+
+    updatePos(x, y) {
+        this.x = x;
+        this.y = y;
+        this.location = new Location(x,y);
+    }
+
+    updatePos(location1) {
+        this.location = location1;
+        this.x=location1.x;
+        this.y=location1.y
+    }
 }
 
-function Location(f, r){
-    this.f = f;
-    this.r = r;
+class Location{
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+    static equalto(location1, location2) {
+        return location1.x == location2.x && location1.y == location2.x;
+    }
 }
 
 function reset(){
     gamepieces = [];
     for(var i = 1; i < 9; i++){
-        gamepieces.push(new Piece("pawn", i, 2, "white"));
+        gamepieces.push(new Piece(TYPE_PAWN, i, 2, COLOR_WHITE));
     }
 
-    gamepieces.push(new Piece("rook", 1, 1, "white"));
-    gamepieces.push(new Piece("rook", 8, 1, "white"));
+    gamepieces.push(new Piece(TYPE_ROOK, 1, 1, COLOR_WHITE));
+    gamepieces.push(new Piece(TYPE_ROOK, 8, 1, COLOR_WHITE));
 
-    gamepieces.push(new Piece("knight", 2, 1, "white"));
-    gamepieces.push(new Piece("knight", 7, 1, "white"));
+    gamepieces.push(new Piece(TYPE_KNIGHT, 2, 1, COLOR_WHITE));
+    gamepieces.push(new Piece(TYPE_KNIGHT, 7, 1, COLOR_WHITE));
 
-    gamepieces.push(new Piece("bishop", 3, 1, "white"));
-    gamepieces.push(new Piece("bishop", 6, 1, "white"));
+    gamepieces.push(new Piece(TYPE_BISHOP, 3, 1, COLOR_WHITE));
+    gamepieces.push(new Piece(TYPE_BISHOP, 6, 1, COLOR_WHITE));
 
-    gamepieces.push(new Piece("queen", 4, 1, "white"));
+    gamepieces.push(new Piece(TYPE_QUEEN, 4, 1, COLOR_WHITE));
 
-    gamepieces.push(new Piece("king", 5, 1, "white"));
+    gamepieces.push(new Piece(TYPE_KING, 5, 1, COLOR_WHITE));
 
     for(var i = 1; i < 9; i++){
-        gamepieces.push(new Piece("pawn", i, 7, "black"));
+        gamepieces.push(new Piece(TYPE_PAWN, i, 7, COLOR_BLACK));
     }
 
-    gamepieces.push(new Piece("rook", 1, 8, "black"));
-    gamepieces.push(new Piece("rook", 8, 8, "black"));
+    gamepieces.push(new Piece(TYPE_ROOK, 1, 8, COLOR_BLACK));
+    gamepieces.push(new Piece(TYPE_ROOK, 8, 8, COLOR_BLACK));
 
-    gamepieces.push(new Piece("knight", 2, 8, "black"));
-    gamepieces.push(new Piece("knight", 7, 8, "black"));
+    gamepieces.push(new Piece(TYPE_KNIGHT, 2, 8, COLOR_BLACK));
+    gamepieces.push(new Piece(TYPE_KNIGHT, 7, 8, COLOR_BLACK));
 
-    gamepieces.push(new Piece("bishop", 3, 8, "black"));
-    gamepieces.push(new Piece("bishop", 6, 8, "black"));
+    gamepieces.push(new Piece(TYPE_BISHOP, 3, 8, COLOR_BLACK));
+    gamepieces.push(new Piece(TYPE_BISHOP, 6, 8, COLOR_BLACK));
 
-    gamepieces.push(new Piece("queen", 5, 8, "black"));
+    gamepieces.push(new Piece(TYPE_QUEEN, 5, 8, COLOR_BLACK));
 
-    gamepieces.push(new Piece("king", 4, 8,"black"));
+    gamepieces.push(new Piece(TYPE_KING, 4, 8,COLOR_BLACK));
 }
 
 for(var i = 0; i<gamepieces.length; i++){
-    locations.push(new Location(gamepieces[i].f, gamepieces[i].r));
+    locations.push(new Location(gamepieces[i].x, gamepieces[i].y));
 }
 
 function checkIfTakenSpace(location) {
     for (var i = 0; i<gamepieces.length; i++) {
-        if (new Location(gamepieces[i].f, gamepieces[i].r) == location) {
+        if (Location.equalto(location, piece.location)) {
             return true;
         }
     }
@@ -64,7 +98,7 @@ function checkIfTakenSpace(location) {
 
 function getPieceAtSpace(location) {
     for (var i = 0; i<gamepieces.length; i++) {
-        if (i.r== location.r && i.f == location.f) {
+        if (i.y== location.y && i.x == location.x) {
             return gamepieces[i];
         }
     }

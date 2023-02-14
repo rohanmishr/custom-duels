@@ -40,28 +40,8 @@ function checkLegalMoves(piece){
     }
 
     if(piece.type == "rook"){
-        var moves = [];
-        for(var i = 1; i<9; i++){
-            l = new Location(piece.f, i);
-            if (checkIfTakenSpace(l)) {
-                if (getPieceAtSpace(l).color != piece.color) {
-                    moves.push(l);
-                    break;
-                }
-                else {
-                    break;
-                }
-            }
-            moves.push(l);
-        }
-        for(var i = 1; i<9; i++){
-            moves.push(new Location(i, piece.r));
-        }
-        for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r){
-                moves.splice(i, 1);
-            }
-        }
+        var moves = []
+        for (var i = piece; i<9, i++)
         return moves;
     }
 
