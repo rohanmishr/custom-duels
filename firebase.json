@@ -1,0 +1,11 @@
+{
+    "hosting": {
+      "public": "/",
+      "site": "forestedchess",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
+    }
+  }
