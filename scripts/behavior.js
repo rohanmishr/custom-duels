@@ -19,22 +19,38 @@ function movePiece(piece, location){
 }
 
 function checkLegalMoves(piece){
-    if (piece == null) {console.log("Piece is null"); return;}
+    if (piece == null) {console.log("Piece is null"); LogError("Piece is null"); return;}
     if(piece.type == TYPE_PAWN){
-        if (piece.COLOR_WHITE) {
-            var moves = [new Location(piece.x, piece.y + 1), new Location(piece.x, piece.y + 2)];
+        var moves = []
+        if (piece.color = COLOR_WHITE) {
+            moves = [new Location(piece.x, piece.y + 1), new Location(piece.x, piece.y + 2), new Location(piece.x+1, piece.y+1), new Location(piece.x-1, piece.y+1)];
             if(piece.y !== 2){
-                moves.splice(1, 2);
+                moves.splice(1, 1);
             }
-    
-            if(checkIfTakenSpace(new Location(piece.x+1, piece.y+1))) {
-                var piecetoeat = getPieceAtSpace(new Location(piece.x+1, piece.y+1));
-                if (piecetoeat.color == COLOR_BLACK) {
-                    moves.push(new Location(piece.x+1, piece.y+1));
+
+        }
+        if (piece.color = COLOR_BLACK) {
+            moves = [new Location(piece.x, piece.y-1), new Location(piece.x, piece.y-2), new Location(piece.x+1, piece.y-1), new Location(piece.x-1, piece.y-1)];
+        }
+        for (var i = 0; i < moves.length; i++) {
+            if (checkIfTakenSpace(moves[i])) {
+                var pieceatspace = getPieceAtSpace(moves[i]);
+                if (pieceatspace.color != piece.color) {
+                    if (i>1) {
+                        continue;
+                    }
+                    else {
+                        moves.splice(i,1);
+                    }
+                }
+                else {
+                    moves.splice(i, 1);
+                    if (i==0) {
+                        moves.splice(i+1,1);
+                    }
                 }
             }
         }
-
     }
 
     if(piece.type == TYPE_ROOK){
@@ -102,6 +118,7 @@ function checkLegalMoves(piece){
     }
 
     if(piece.type == TYPE_KNIGHT){
+        LogError("Piece selected: Knight");
         var moves = [new Location(piece.x + 1, piece.y + 2), new Location(piece.x + 2, piece.y + 1), new Location(piece.x + 2, piece.y - 1), new Location(piece.x + 1, piece.y - 2), new Location(piece.x - 1, piece.y - 2), new Location(piece.x - 2, piece.y - 1), new Location(piece.x - 2, piece.y + 1), new Location(piece.x - 1, piece.y + 2)];
         for(var i = 0; i<gamepieces.length; i++){
             if(gamepieces[i].x == piece.x && gamepieces[i].y == piece.y){

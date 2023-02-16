@@ -22,7 +22,7 @@ function drawBoard() {
         }
         for (var e = 0; e < 8; e++) {
             ctx.fillStyle = "black";
-            ctx.xont = "15px Arial";
+            ctx.font = "15px Arial";
             ctx.fillText(convertIntChar(e+1), 60 + (e * 75), 590);
             ctx.fillText(8 - e, 5, 20 + (e * 75));
         }
