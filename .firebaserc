@@ -1,6 +1,7 @@
 {
   "projects": {
-    "login": "forested-chess"
+    "chess": "forested-chess",
+    "default": "forested-chess"
   },
   "targets": {},
   "etags": {}
