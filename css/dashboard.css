@@ -1,0 +1,58 @@
+#dashboard-top{
+    float: top;
+    border: 1px solid;
+    height: 50vh;
+}
+
+#play-options{
+    width: 48vw;
+    border: 1px solid;
+    float: left;
+    height: 30vh;
+    text-align: center;
+}
+
+#play-options button{
+    width: 12vw;
+    height: 12vw;
+    border-radius: 20px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    margin-top: 3vh;
+
+    transition: 0.5s;
+}
+
+#play-options button:hover{
+    width: 13vw;
+    height: 13vw;
+    border-radius: 20px;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+    margin-top: 2vh;
+}
+
+#settings{
+    padding-top: 1vh;
+    width: 48vw;
+    border: 1px solid;
+    float: right;
+    height: 30vh;
+    text-align: center;
+}
+
+#settings button{
+    width: 46vw;
+    height: 7vh;
+    margin-top: 1.5vh;
+    margin-bottom: 1vh;
+}
+
+#stats{
+    margin-top: 1vh;
+    border: 1px solid red;
+}
+
+.stats-content-editWidgets-section{
+    float: left;
+}
