@@ -1,2 +1,117 @@
-<h1>Dashboard</h1>
-<a href="game.html">Play</a>
+<html>
+    <head>
+        <title>Custom Duels | Dashboard</title>
+        <link rel="stylesheet" href="css/dashboard.css">
+    </head>
+    <body>
+        <div id="dashboard-top">
+            <h1>Dashboard</h1>
+            <div id="play-options">
+                <button>Play Online</button>
+                <button>Play recent 1</button>
+                <button>Play recent 2</button>
+            </div>
+            <div id="settings">
+                <button>Settings</button><br>
+                <button onclick="window.location.replace('custom.html')">Customize</button><br>
+                <button>Help</button>
+            </div>
+        </div>
+
+        <div id="dashboard-middle">
+            <div id="stats">
+                <h1>Your Statistics</h1>
+                <div id="stats-content">
+                    <button onclick="toggleWidgetSelection();">Edit</button>
+                    <div id="stats-content-editwidgets" style="display: none;">
+                        <div class="stats-content-editWidgets-section">
+                            <h3>Total</h3>
+                            <input type="checkbox">Wins<br>
+                            <input type="checkbox">Losses<br>
+                            <input type="checkbox">Ties<br>
+                            <input type="checkbox">ELO<br>
+                            <input type="checkbox">Win Streak<br>
+                        </div>
+                        <div class="stats-content-editWidgets-section">
+                            <h3>Daily</h3>
+                            <input type="checkbox">Wins<br>
+                            <input type="checkbox">Losses<br>
+                            <input type="checkbox">Ties<br>
+                            <input type="checkbox">ELO<br>
+                            <input type="checkbox">Win Streak<br>
+                        </div>
+                        <div class="stats-content-editWidgets-section">
+                            <h3>Rapid</h3>
+                            <input type="checkbox">Wins<br>
+                            <input type="checkbox">Losses<br>
+                            <input type="checkbox">Ties<br>
+                            <input type="checkbox">ELO<br>
+                            <input type="checkbox">Win Streak<br>
+                        </div>
+                        <div class="stats-content-editWidgets-section">
+                            <h3>Blitz</h3>
+                            <input type="checkbox">Wins<br>
+                            <input type="checkbox">Losses<br>
+                            <input type="checkbox">Ties<br>
+                            <input type="checkbox">ELO<br>
+                            <input type="checkbox">Win Streak<br>
+                        </div>
+                        <div class="stats-content-editWidgets-section">
+                            <h3>Bullet</h3>
+                            <input type="checkbox">Wins<br>
+                            <input type="checkbox">Losses<br>
+                            <input type="checkbox">Ties<br>
+                            <input type="checkbox">ELO<br>
+                            <input type="checkbox">Win Streak<br>
+                        </div>
+                    </div>
+                    <div id="stats-wins-total"></div>
+                    <div id="stats-losses-total"></div>
+                    <div id="stats-ties-total"></div>
+                    <div id="stats-elo"></div>
+                    <!-- available stat widgets:
+                        TOTAL:
+                            wins
+                            losses
+                            ties
+                            elo
+                            ws
+                        DAILY:
+                            wins
+                            losses
+                            ties
+                            elo
+                            ws
+                        RAPID
+                            wins
+                            losses
+                            ties
+                            elo
+                            ws
+                        BLITZ
+                            wins
+                            losses
+                            ties
+                            elo
+                            ws
+                        BULLET 
+                            wins
+                            losses
+                            ties
+                            elo
+                            ws
+                    
+                    -->
+                </div>
+            </div>
+            <div id="recent">
+                <h1>Recent Game History</h1>
+            </div>
+
+            <div id="footer">
+                <p>2023 Custom Duels</p>
+            </div>
+        </div>
+    </body>
+    <script src="scripts/dashboard.js"></script>
+</html>
