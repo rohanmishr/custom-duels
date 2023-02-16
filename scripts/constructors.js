@@ -19,9 +19,6 @@ class Piece {
         this.location = new Location(x,y);
         this.color = color;
     }
-    constructor(type, location, color) {
-        this(type,location.x,location.y, color);
-    }
 
     updatePos(x, y) {
         this.x = x;
@@ -42,7 +39,33 @@ class Location{
         this.y = y;
     }
     static equalto(location1, location2) {
-        return location1.x == location2.x && location1.y == location2.x;
+        return location1.x == location2.x && location1.y == location2.y;
+    }
+}
+
+function type_to_string(type) {
+    switch(type) {
+        case TYPE_PAWN:
+            return "pawn";
+        case TYPE_ROOK:
+            return "rook";
+        case TYPE_BISHOP:
+            return "bishop";
+        case TYPE_KNIGHT:
+            return "knight";
+        case TYPE_KING:
+            return "king";
+        case TYPE_QUEEN:
+            return "queen";
+    }
+}
+
+function color_to_string(color) {
+    switch(color) {
+        case COLOR_BLACK:
+            return "black";
+        case COLOR_WHITE:
+            return "white";
     }
 }
 
@@ -89,7 +112,7 @@ for(var i = 0; i<gamepieces.length; i++){
 
 function checkIfTakenSpace(location) {
     for (var i = 0; i<gamepieces.length; i++) {
-        if (Location.equalto(location, piece.location)) {
+        if (Location.equalto(location, gamepieces[i].location)) {
             return true;
         }
     }
@@ -98,7 +121,7 @@ function checkIfTakenSpace(location) {
 
 function getPieceAtSpace(location) {
     for (var i = 0; i<gamepieces.length; i++) {
-        if (i.y== location.y && i.x == location.x) {
+        if (Location.equalto(location, gamepieces[i].location)) {
             return gamepieces[i];
         }
     }

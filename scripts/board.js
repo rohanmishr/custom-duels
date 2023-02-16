@@ -1,3 +1,4 @@
+
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -21,7 +22,7 @@ function drawBoard() {
         }
         for (var e = 0; e < 8; e++) {
             ctx.fillStyle = "black";
-            ctx.font = "15px Arial";
+            ctx.xont = "15px Arial";
             ctx.fillText(convertIntChar(e+1), 60 + (e * 75), 590);
             ctx.fillText(8 - e, 5, 20 + (e * 75));
         }
@@ -31,7 +32,7 @@ function drawBoard() {
 function drawPieces(){
     for(var i = 0; i < gamepieces.length; i++){
         var piece = gamepieces[i];
-        ctx.drawImage(document.getElementById(piece.type + piece.color), ((piece.f - 1) * 75) + 2, 530 - ((piece.r - 1) * 75), 70, 70);
+        ctx.drawImage(document.getElementById(type_to_string(piece.type) +color_to_string(piece.color)), ((piece.x - 1) * 75) + 2, 530 - ((piece.y - 1) * 75), 70, 70);
     }
 }
 
@@ -39,10 +40,10 @@ function showLegalMoves(piece){
     var moves = checkLegalMoves(piece);
     for(var i = 0; i < moves.length; i++){
         ctx.fillStyle = "rgba(0, 255, 0, 0.5)";
-        ctx.fillRect((moves[i].f - 1) * 75, 525 - ((moves[i].r - 1) * 75), 75, 75);
+        ctx.fillRect((moves[i].x - 1) * 75, 525 - ((moves[i].y - 1) * 75), 75, 75);
     }
 }
-
+ 
 var showingMoves = false;
 var shownPiece = null;
 
@@ -63,7 +64,7 @@ document.getElementById("canvas").addEventListener("click", function(event) {
 
     for(var i = 0; i<gamepieces.length; i++){
         showingMoves = true;
-        if(gamepieces[i].f == f && gamepieces[i].r == r){
+        if(gamepieces[i].x == f && gamepieces[i].y == r){
             showLegalMoves(gamepieces[i]);
             shownPiece = gamepieces[i];
         }

@@ -1,14 +1,15 @@
 function movePiece(piece, location){
     var moves = checkLegalMoves(piece);
+    if (moves == null) {console.log("Moves is null. Most likely no moves found!"); return;}
     for(var i = 0; i<moves.length; i++){
-        if(moves[i].f == location.f && moves[i].r == location.r){
-            piece.f = location.f;
-            piece.r = location.r;
+        if(moves[i].x == location.x && moves[i].y == location.y){
+            piece.x = location.x;
+            piece.y = location.y;
         }
     }
     
     for(var i = 0; i<32; i++){
-        locations.push(new Location(gamepieces[i].f, gamepieces[i].r));
+        locations.push(new Location(gamepieces[i].x, gamepieces[i].y));
     }
 
     drawBoard();
@@ -18,105 +19,160 @@ function movePiece(piece, location){
 }
 
 function checkLegalMoves(piece){
-    if(piece.type == "pawn"){
-        var moves = [new Location(piece.f, piece.r + 1), new Location(piece.f, piece.r + 2), new Location(piece.f + 1, piece.r + 1), new Location(piece.f - 1, piece.r + 1)];
-        if(piece.r !== 2){
-            moves.splice(1, 2);
+    if (piece == null) {console.log("Piece is null"); return;}
+    if(piece.type == TYPE_PAWN){
+        if (piece.COLOR_WHITE) {
+            var moves = [new Location(piece.x, piece.y + 1), new Location(piece.x, piece.y + 2)];
+            if(piece.y !== 2){
+                moves.splice(1, 2);
+            }
+    
+            if(checkIfTakenSpace(new Location(piece.x+1, piece.y+1))) {
+                var piecetoeat = getPieceAtSpace(new Location(piece.x+1, piece.y+1));
+                if (piecetoeat.color == COLOR_BLACK) {
+                    moves.push(new Location(piece.x+1, piece.y+1));
+                }
+            }
         }
-        for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r + 1){
-                moves.splice(0, 1);
-            }
 
-            if(gamepieces[i].f !== piece.f + 1 && gamepieces[i].r !== piece.r + 1){
-                moves.splice(2, 3);
-            }
+    }
 
-            if(gamepieces[i].f !== piece.f - 1 && gamepieces[i].r !== piece.r + 1){
-                moves.splice(3, 4);
+    if(piece.type == TYPE_ROOK){
+        var moves = [];
+        //Check all to right
+        for (var i = piece.x; i < 9; i++) {
+            if (i == piece.x) {continue;}
+            if (checkIfTakenSpace(new Location(i, piece.y))) {
+                var piecefound = getPieceAtSpace(new Location(i, piece.y));
+                if (piecefound.color == piece.color) {
+                    break;
+                }
+                else {
+                    moves.push(new Location(i, piece.y));
+                    break;
+                }
             }
+            moves.push(new Location(i, piece.y));
+        }
+        //Check all to left
+        for (var i = piece.x; i > 0; i--) {
+            if (i == piece.x) {continue;}
+            if (checkIfTakenSpace(new Location(i, piece.y))) {
+                var piecefound = getPieceAtSpace(new Location(i, piece.y));
+                if (piecefound.color == piece.color) {
+                    break;
+                }
+                else {
+                    moves.push(new Location(i, piece.y));
+                    break;
+                }
+            }
+            moves.push(new Location(i, piece.y));
+        }
+        //Check all to top
+        for (var i = piece.y; i < 9; i++) {
+            if (i == piece.y) {continue;}
+            if (checkIfTakenSpace(new Location(piece.x, i))) {
+                var piecefound = getPieceAtSpace(new Location(piece.x, i));
+                if (piecefound.color == piece.color) {
+                    break;
+                }
+                else {
+                    moves.push(new Location(piece.x, i));
+                    break;
+                }
+            }
+            moves.push(new Location(piece.x, i));
+        }
+        for (var i = piece.y; i > 0; i--) {
+            if (i == piece.y) {continue;}
+            if (checkIfTakenSpace(new Location(piece.x, i))) {
+                var piecefound = getPieceAtSpace(new Location(piece.x, i));
+                if (piecefound.color == piece.color) {
+                    break;
+                }
+                else {
+                    moves.push(new Location(piece.x, i));
+                    break;
+                }
+            }
+            moves.push(new Location(piece.x, i));
         }
         return moves;
     }
 
-    if(piece.type == "rook"){
-        var moves = []
-        for (var i = piece; i<9, i++)
-        return moves;
-    }
-
-    if(piece.type == "knight"){
-        var moves = [new Location(piece.f + 1, piece.r + 2), new Location(piece.f + 2, piece.r + 1), new Location(piece.f + 2, piece.r - 1), new Location(piece.f + 1, piece.r - 2), new Location(piece.f - 1, piece.r - 2), new Location(piece.f - 2, piece.r - 1), new Location(piece.f - 2, piece.r + 1), new Location(piece.f - 1, piece.r + 2)];
+    if(piece.type == TYPE_KNIGHT){
+        var moves = [new Location(piece.x + 1, piece.y + 2), new Location(piece.x + 2, piece.y + 1), new Location(piece.x + 2, piece.y - 1), new Location(piece.x + 1, piece.y - 2), new Location(piece.x - 1, piece.y - 2), new Location(piece.x - 2, piece.y - 1), new Location(piece.x - 2, piece.y + 1), new Location(piece.x - 1, piece.y + 2)];
         for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r){
+            if(gamepieces[i].x == piece.x && gamepieces[i].y == piece.y){
                 moves.splice(i, 1);
             }
-            if(gamepieces[i].f == piece.f + 1 && gamepieces[i].r == piece.r + 2){
+            if(gamepieces[i].x == piece.x + 1 && gamepieces[i].y == piece.y + 2){
                 moves.splice(0, 1);
             }
-            if(gamepieces[i].f == piece.f + 2 && gamepieces[i].r == piece.r + 1){
+            if(gamepieces[i].x == piece.x + 2 && gamepieces[i].y == piece.y + 1){
                 moves.splice(1, 2);
             }
         }
         return moves;
     }
 
-    if(piece.type == "bishop"){
+    if(piece.type == TYPE_BISHOP){
         var moves = [];
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f + i, piece.r + i));
+            moves.push(new Location(piece.x + i, piece.y + i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f + i, piece.r - i));
+            moves.push(new Location(piece.x + i, piece.y - i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f - i, piece.r - i));
+            moves.push(new Location(piece.x - i, piece.y - i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f - i, piece.r + i));
+            moves.push(new Location(piece.x - i, piece.y + i));
         }
 
         for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r){
+            if(gamepieces[i].x == piece.x && gamepieces[i].y == piece.y){
                 moves.splice(i, 1);
             }
         }
         return moves;
     }
 
-    if(piece.type == "queen"){
+    if(piece.type == TYPE_QUEEN){
         var moves = [];
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f, i));
+            moves.push(new Location(piece.x, i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(i, piece.r));
+            moves.push(new Location(i, piece.y));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f + i, piece.r + i));
+            moves.push(new Location(piece.x + i, piece.y + i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f + i, piece.r - i));
+            moves.push(new Location(piece.x + i, piece.y - i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f - i, piece.r - i));
+            moves.push(new Location(piece.x - i, piece.y - i));
         }
         for(var i = 1; i<9; i++){
-            moves.push(new Location(piece.f - i, piece.r + i));
+            moves.push(new Location(piece.x - i, piece.y + i));
         }
 
         for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r){
+            if(gamepieces[i].x == piece.x && gamepieces[i].y == piece.y){
                 moves.splice(i, 1);
             }
         }
         return moves;
     }
 
-    if(piece.type == "king"){
-        var moves = [new Location(piece.f, piece.r + 1), new Location(piece.f, piece.r - 1), new Location(piece.f + 1, piece.r), new Location(piece.f - 1, piece.r), new Location(piece.f + 1, piece.r + 1), new Location(piece.f + 1, piece.r - 1), new Location(piece.f - 1, piece.r - 1), new Location(piece.f - 1, piece.r + 1)];
+    if(piece.type == TYPE_KING){
+        var moves = [new Location(piece.x, piece.y + 1), new Location(piece.x, piece.y - 1), new Location(piece.x + 1, piece.y), new Location(piece.x - 1, piece.y), new Location(piece.x + 1, piece.y + 1), new Location(piece.x + 1, piece.y - 1), new Location(piece.x - 1, piece.y - 1), new Location(piece.x - 1, piece.y + 1)];
         for(var i = 0; i<gamepieces.length; i++){
-            if(gamepieces[i].f == piece.f && gamepieces[i].r == piece.r){
+            if(gamepieces[i].x == piece.x && gamepieces[i].y == piece.y){
                 moves.splice(i, 1);
             }
         }
