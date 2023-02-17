@@ -6,3 +6,10 @@ function toggleWidgetSelection(){
         div.style.display = "none";
     }
 }
+
+setInterval(function(){
+    for(var i = 0; i < shownWidgets.length; i++){
+        var show = document.getElementById(shownWidgets[i]);
+        show.style.display = "block";
+    };
+})
