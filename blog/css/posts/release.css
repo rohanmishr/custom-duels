@@ -33,7 +33,7 @@ html {
     display: block;
     animation: dividerOnload ease 2s;
   }
-  #posts{ 
+  #post{ 
     margin-top: 200px;
     padding-top: 150px;
     padding-bottom: 20px;
@@ -49,34 +49,34 @@ html {
     float: center;
     background-color: rgb(22, 19, 19);
   }
-    #posts h1 {
+    #post h1 {
         font-family: monospace;
         font-size: 50px;
         font-weight: 300;
         text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    #posts p {
+    #post p {
         font-family: monospace;
         font-size: 25px;
         font-weight: 300;
         text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    #posts a {
+    #post a {
         font-family: monospace;
         font-size: 25px;
         font-weight: 300;
         text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
-    #posts a:hover {
+    #post a:hover {
         color: rgb(65, 65, 228);
     }
-    #posts a:visited {
+    #post a:visited {
         color: rgb(76, 182, 103);
     }
-    #posts a:active {
+    #post a:active {
         color: rgb(65, 65, 228);
     }
-    #posts a:link {
+    #post a:link {
         color: rgb(76, 182, 103);
     }
     .post1 {
@@ -85,8 +85,8 @@ html {
         padding-bottom: 50px;
         border-radius: 30px;
         cursor: pointer;
-        width: 80%;
-        height: 80%;
+        width: 90%;
+        height: 90%;
         color: black;
  
     }
@@ -124,96 +124,7 @@ html {
         color: orange;
         text-decoration: none;
     }
-    .readMore {
-        
-        font-family: Roboto, sans-serif;
-        font-weight: 0;
-        font-size: 14px;
-        color: #fff;
-        background-color: #0066CC;
-        padding: 10px 30px;
-        border: 2px solid #0066cc;
-        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-        border-radius: 50px;
-        transition : 1000ms;
-        transform: translateY(0);
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        cursor: pointer;
-        margin-top: 20px;
 
-    }
-    .readMore:hover{
-        transition : 1000ms;
-        padding: 10px 50px;
-        transform : translateY(-0px);
-        background-color: #fff;
-        color: #0066cc;
-        border: solid 2px #0066cc;
-    }
-
-
-
-    .post2 {
-        margin-top: 50px;
-        padding-top: 50px;
-        background-color: #e1acf2;
-        padding-bottom: 50px;
-        border-radius: 30px;
-        cursor: pointer;
-        width: 33%;
-        height: 80%;
-        color: black;
-        float: left;
-        align-items: left;
-        align-self: left;
-        margin-right: 47%;
-        
-        
-        
- 
-    }
-    .post2:hover {
-        background-color: #cf82e8;
-    }
-    .post2 p {
-        margin-top: 50px;
-        text-align: center;
-        margin-left: 5px;
-        color: black;
-        
-    }
-    .post2 h1 {
-        font-family: Arial;
-        font-size: 48px;
-        font-style: normal;
-        font-weight: bold;
-        text-decoration: none;
-        text-transform: none;
-        font-variant: small-caps;
-        color: #000000;
-        text-align: center;
-        margin-left: 5px;
-        }
-        
-    
-    .post2 img {
-        
-        width: 50%;
-        height: 50%;
-        margin-left: 5px;
-
-    }
-    .post2  a, a:hover, a:focus, a:active 
-        {
-        margin-top: 50px;
-        text-align: center;
-        margin-left: 5px;
-        color: black;
-        text-decoration: none;
-
-    }
     #cusdis_thread {
         color: white;
     }
