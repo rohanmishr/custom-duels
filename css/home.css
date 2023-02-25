@@ -114,7 +114,6 @@ html{
 
   #home-content-one{
     margin-top: 200px;
-    padding-top: 150px;
     padding-bottom: 20px;
     animation: fadeIn ease 2s;
     color: white;
@@ -141,7 +140,8 @@ html{
         text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
     #home-content-two{
-      padding-top: 100px;
+      padding-bottom: 20px;
+
       animation: fadeIn ease 2s;
       color: white;
       border-radius: 10px;
@@ -156,7 +156,7 @@ html{
     }
     #home-content-two h1 {
       font-family: monospace;
-      font-size: 50px;
+      font-size: 50px; 
       font-weight: 300;
       text-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
@@ -247,6 +247,7 @@ html{
   border-radius: 10px;
   cursor: pointer;
   padding: 15px 50px;
+  width: 100%;
 }
 .signup:hover {
   color: #2d63c8;
@@ -260,7 +261,8 @@ html{
   border: 1px solid #000000;
   border-radius: 10px;
   padding: 15px 50px;
-  cursor: pointer
+  cursor: pointer;
+  width: 100%;
 }
 .login:hover {
   color: #9d20b6;
